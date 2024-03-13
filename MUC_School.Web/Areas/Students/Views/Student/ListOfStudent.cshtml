@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Student>
+
+	<div>
+	@if (TempData["Successful"] != null)
+	{
+	  <script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		<script>
+			toastr.info('@TempData["Successful"]')
+			</script>
+	}
+    </div>
+
+<table class="table table-bordered table-hover ">
+	<thead class="bg-secondary">
+		<<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Age</th>
+			<th>RollNumber</th>
+			<th>Standard</th>
+			<th>Division</th>
+			<th>Teacher</th>
+			<th>Image</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+
+	<tbody class="bg-info align-baseline">
+		@foreach(var student in Model)
+		{
+		  <tr>
+			<td>@student.Id</td>
+			<td>@student.Name</td>
+			<td>@student.Age</td>
+			<td>@student.Rollnumber</td>
+			<td>@student.ClassName.Standard</td>
+			<td>@student.ClassName.Division</td>
+			<td>@student.Teacher.TeacherName</td>
+			<td> <img src="@student.ImageUrl" height="100" width="100" /> </td>
+
+			<td>
+				<a asp-controller="Student" asp-action="StudentForm" asp-route-Id="@student.Id" class="btn btn-warning">Update</a>
+				<a asp-controller="Student" asp-action="Delete" asp-route-Id="@student.Id" class="btn btn-dark">Remove</a>
+			</td>
+		  </tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@model Student
+
+<div class=" border p-3">
+	<form asp-controller="Student" asp-action="StudentForm" method="post" enctype="multipart/form-data">
+		<input asp-for="ImageUrl" hidden/>
+		<div class="row  p-3">
+			<h2 class="text-center">Add Student Details</h2>
+		</div>
+
+		<div class="mt-3">
+			<hr />
+			<span asp-validation-for="Name" class="text-black">Serial Number</span>
+			<input asp-for="Name" placeholder="Student Name" class="form-control"/>
+		</div>
+
+		<div class="mt-3">
+			<span asp-validation-for="Age" class="text-black">Age</span>
+			<input asp-for="Age" placeholder="Student Age" class="form-control" />
+		</div>
+
+		<div class="mt-3">
+			<span asp-validation-for="Rollnumber" class="text-black">RolL Number</span>
+			<input asp-for="Rollnumber" placeholder="Enter Roller Number" class="form-control"/>
+		</div>
+
+		<select asp-for="ClassNameId" asp-items="@ViewBag.ClassStandard" class="mt-3 form-select">
+			<option>Select Division</option>
+		</select>
+
+		<select asp-for="TeacherId" asp-items="@ViewBag.TeacherLists" class="form-select mt-3">
+			<option>Select Teacher</option>
+		</select>
+
+		<div class="mt-3">
+			<span asp-validation-for="ImageUrl" class="text-black">Select Image</span>
+			<input type="file" class="form-control" name="file" />
+		</div>
+
+		<div class="row mt-4">
+			<div class="col-6">
+				<input type="submit" class="btn btn-success form-control" value=@(Model.Id == 0? "Add" : "Update") />
+			</div>
+			<div class="col-6">
+				<a asp-controller="Student" asp-action="ListOfStudent" class="btn btn-warning form-control">StudentList</a>
+			</div>
+		</div>
+	</form>
+
+</div>
